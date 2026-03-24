@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  sctero:
+    build: .
+    container_name: sctero
+    restart: unless-stopped
+    ports:
+      # Map host port 5577 to container port 5000
+      - "5577:5000"
+    environment:
+      - BASE_DIR=/data
+      - ADMIN_PASSWORD=admin
+      - SECRET_KEY=your-super-secret-key
+      - PORT=5000
+    volumes:
+      # Mount host path from config.json to the /data dir in container
+      - /data/appsdata/sctero:/data

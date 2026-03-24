@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - SCTERO{% endblock %}
+{% block content %}
+<div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar glass-panel">
+        <div class="sidebar-header">
+            <div class="logo small">
+                <svg viewBox="0 0 24 24" fill="none" class="logo-icon"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h2>SCTERO</h2>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-filter="all">All Papers</a>
+            <a href="#" class="nav-item" data-filter="recent">Recent</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/logout" class="nav-item logout">Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="topbar">
+            <div class="search-bar">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" id="searchInput" placeholder="Search title, authors, tags...">
+            </div>
+            <button class="btn primary-btn" id="addPaperBtn">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" class="btn-icon" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                Add Paper
+            </button>
+        </header>
+
+        <div class="content-body">
+            <div class="table-container glass-panel">
+                <table id="papersTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Authors</th>
+                            <th>Category</th>
+                            <th>Tags</th>
+                            <th>Added</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="papersBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Paper Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3>Edit Paper</h3>
+                <button class="close-btn" id="closeEditModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editPaperId">
+                <div class="input-group">
+                    <label for="editTitle">Title</label>
+                    <input type="text" id="editTitle" placeholder="Paper Title">
+                </div>
+                <div class="input-group">
+                    <label for="editAuthors">Authors</label>
+                    <input type="text" id="editAuthors" placeholder="Authors">
+                </div>
+                <div class="input-group">
+                    <label for="editCategory">Category</label>
+                    <input type="text" id="editCategory" placeholder="e.g., Computer Vision">
+                </div>
+                <div class="input-group">
+                    <label for="editTags">Tags (comma separated)</label>
+                    <input type="text" id="editTags" placeholder="e.g., diffusion, 3d, survey">
+                </div>
+                <div class="input-group">
+                    <label for="editNotes">Review / Annotation</label>
+                    <textarea id="editNotes" rows="4" style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; color: var(--text-main); font-family: 'Inter', sans-serif; resize: vertical;" placeholder="Add your notes or review for this paper here..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary-btn" id="cancelEdit">Cancel</button>
+                <button class="btn primary-btn" id="submitEdit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Paper Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3>Add New Paper</h3>
+                <button class="close-btn" id="closeAddModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="paperUrl">Paper URL (arXiv, DOI, or direct PDF)</label>
+                    <input type="text" id="paperUrl" placeholder="https://arxiv.org/abs/...">
+                </div>
+                <div class="input-group">
+                    <label for="paperCategory">Category</label>
+                    <input type="text" id="paperCategory" placeholder="e.g., Computer Vision">
+                </div>
+                <div class="input-group">
+                    <label for="paperTags">Tags (comma separated)</label>
+                    <input type="text" id="paperTags" placeholder="e.g., diffusion, 3d, survey">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary-btn" id="cancelAdd">Cancel</button>
+                <button class="btn primary-btn" id="submitAdd">
+                    <span id="submitSpinner" class="spinner" style="display:none;"></span>
+                    <span id="submitText">Download & Add</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

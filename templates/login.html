@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Login - SCTERO{% endblock %}
+{% block content %}
+<div class="login-container">
+    <div class="login-box glass-panel">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" class="logo-icon"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h1>SCTERO</h1>
+        </div>
+        <p class="subtitle">Self-hosted Paper Management</p>
+        
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST" action="/login">
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn primary-btn full-width">Sign In</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
