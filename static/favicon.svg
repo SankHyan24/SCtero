@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1A2E"/>
+      <stop offset="100%" style="stop-color:#16213E"/>
+    </linearGradient>
+    <linearGradient id="docGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00E5CC"/>
+      <stop offset="100%" style="stop-color:#00B4A0"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00E5CC"/>
+      <stop offset="100%" style="stop-color:#0096FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#00E5CC" flood-opacity="0.3"/>
+    </filter>
+    <filter id="innerGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="url(#bgGrad)"/>
+
+  <!-- Subtle border -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="none" stroke="url(#accentGrad)" stroke-width="2" opacity="0.4"/>
+
+  <!-- Document shape -->
+  <g filter="url(#shadow)">
+    <path d="M140 100 L310 100 L372 162 L372 412 L140 412 Z" fill="#0F1A2E" stroke="url(#accentGrad)" stroke-width="3"/>
+    <!-- Document fold corner -->
+    <path d="M310 100 L310 162 L372 162 Z" fill="#00B4A0" opacity="0.3"/>
+    <path d="M310 100 L310 162 L372 162 Z" fill="none" stroke="url(#accentGrad)" stroke-width="2"/>
+  </g>
+
+  <!-- SC Lettermark -->
+  <text x="210" y="240" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="100" font-weight="700" fill="url(#accentGrad)" text-anchor="middle" letter-spacing="-2">SC</text>
+
+  <!-- Text lines on document -->
+  <rect x="170" y="275" width="170" height="8" rx="4" fill="url(#accentGrad)" opacity="0.6"/>
+  <rect x="170" y="300" width="140" height="8" rx="4" fill="url(#accentGrad)" opacity="0.45"/>
+  <rect x="170" y="325" width="160" height="8" rx="4" fill="url(#accentGrad)" opacity="0.35"/>
+  <rect x="170" y="350" width="120" height="8" rx="4" fill="url(#accentGrad)" opacity="0.25"/>
+  <rect x="170" y="375" width="100" height="8" rx="4" fill="url(#accentGrad)" opacity="0.15"/>
+
+  <!-- Small reference marker dots -->
+  <circle cx="162" cy="279" r="5" fill="#00E5CC" opacity="0.7"/>
+  <circle cx="162" cy="304" r="5" fill="#00E5CC" opacity="0.5"/>
+  <circle cx="162" cy="329" r="5" fill="#00E5CC" opacity="0.4"/>
+</svg>
