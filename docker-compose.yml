@@ -4,10 +4,8 @@ services:
   sctero:
     build: .
     container_name: sctero
+    network_mode: host
     restart: unless-stopped
-    ports:
-      # Map host port 5577 to container port 5000
-      - "5577:5000"
     environment:
       - BASE_DIR=/data
       - ADMIN_PASSWORD=admin
